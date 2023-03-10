@@ -6,10 +6,16 @@ public class TextUI {
     Scanner scanner;
     UserHandler userHandler;
 
-    public TextUI(UserHandler userHandler, Scanner scanner){
+    public TextUI(UserHandler userHandler){
         this.userHandler = userHandler;
-        this.scanner = scanner;
+        this.scanner = new Scanner(System.in);
     }
+    
+    public String getUserInput(){
+        System.out.println("Hello. Would you like to 1) Log in or 2) Create user? Please write 1 or 2 and press Enter.");
+        return scanner.nextLine();
+    }
+    
     public void loginMenu() {
         System.out.println("Please enter your username: ");
         String userName = scanner.nextLine();
