@@ -6,13 +6,11 @@ public class Main {
 
     public static void main(String[] args) {
         UserHandler userHandler = new UserHandler("users.txt");
-        Scanner scanner = new Scanner(System.in);
-        TextUI textUI = new TextUI(userHandler, scanner);
+        TextUI textUI = new TextUI(userHandler);
 
         userHandler.loadUsers();
-
-        System.out.println("Hello. Would you like to 1) Log in or 2) Create user? Please write 1 or 2 and press Enter.");
-        String userInput = scanner.nextLine();
+        
+        String userInput = textUI.getUserInput();
 
         switch (userInput) {
             case "1":
