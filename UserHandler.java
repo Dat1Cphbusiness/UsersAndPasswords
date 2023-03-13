@@ -11,12 +11,25 @@ import java.util.Scanner;
 public class UserHandler {
     ArrayList<User> users = new ArrayList<>();
     File file;
+    Scanner scanner;
+    FileWriter filewriter;
 
-    public UserHandler(String filename){
-        file = new File(filename);
+   public UserHandler(String path) throws IOException {
+     //   try {
+            file = new File(path);
+            scanner = new Scanner(file);
+            filewriter = new FileWriter(file);
+     /*   } catch (FileNotFoundException e) {
+            System.out.println("Filen du ønsker at læse fra findes ikke");
+        } catch (IOException e) {
+            System.out.println("Filen du ønsker at skrive til findes ikke");
+        }*/
+
+     /*   catch(Exception e){
+            System.out.println("Systemet virker ikke");
+        }*/
 
     }
-
     public boolean login(String username, String password) {
         for(User user: users){
             if(user.getName().equals(username) && user.getPassword().equals(password) )
@@ -36,7 +49,7 @@ public class UserHandler {
 
     public void loadUsers(){
         try {
-            Scanner scanner = new Scanner(file);
+         
             while(scanner.hasNextLine()){
                 String input = scanner.nextLine();
                 String[] values = input.split(",");
@@ -50,11 +63,11 @@ public class UserHandler {
 
     public void saveUsers() {
         try{
-            FileWriter writer = new FileWriter(file);
+         
             for(User user:users){
-                writer.write(user.getName() + "," + user.getPassword());
+                filewriter.write(user.getName() + "," + user.getPassword());
             }
-            writer.close();
+            filewriter.close();
         }
         catch (IOException e){
             System.out.println("Sorry, the system is not working currently");
